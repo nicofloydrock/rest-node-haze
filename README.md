@@ -1,1 +1,1 @@
-rest-node-haze
+node-rest-server
