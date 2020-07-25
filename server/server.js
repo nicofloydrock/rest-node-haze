@@ -5,9 +5,6 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 
 
-//Configuracion de rutas globales
-app.use(require('./routes/index'))
-
 
 
 
@@ -15,6 +12,10 @@ app.use(require('./routes/index'))
 app.use(bodyParser.urlencoded({ extended: false }))
     // parse application/json
 app.use(bodyParser.json())
+
+
+//Configuracion de rutas globales
+app.use(require('./routes/index'))
 
 mongoose.connect(process.env.URL_DB, {useNewUrlParser:true , useCreateIndex:true},
 (err , res) =>{
