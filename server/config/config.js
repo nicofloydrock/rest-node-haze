@@ -1,3 +1,5 @@
+
+//process.env contiene las variables de entorno de HEROKU
 /**
  *  PUERTO
  *  
@@ -7,7 +9,7 @@ process.env.PORT = process.env.PORT || 3000;
 
 /*
  * ENTORNO
- * mongo pass 9PDttSwJfNUdpDun
+ * mongo 
  */
 
 //NODE_ENV es una variable que establece heroku , si no existe ,asumimos que es DEV.
