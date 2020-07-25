@@ -22,7 +22,7 @@ app.get('/usuario', function(req, res) {
     Usuario.find({estado:true} , 'nombre email role estado google img')
     .skip(desde)
     .limit(limite)
-        .exec(   (err , usuarios) => {
+        .exec((err , usuarios) => {
             if(err){
                 return res.status(400).json({
                     ok:false,
