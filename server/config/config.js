@@ -16,7 +16,6 @@ process.env.PORT = process.env.PORT || 3000;
  process.env.NODE_ENV = process.env.NODE_ENV || 'dev'
 
 
-
 /* BASE DE DATOS */
 let urlDB;
 if( process.env.NODE_ENV === 'dev'){
@@ -29,3 +28,22 @@ if( process.env.NODE_ENV === 'dev'){
 }
 
 process.env.URL_DB = urlDB;
+
+
+
+
+/**
+ * JWT VENCIMIENTO TOKEN
+ * 60 segundos
+ * 60 minutos
+ * 24 horas
+ * 30 dias
+ */
+
+ process.env.CADUCIDAD_TOKEN = 60 * 60;
+
+
+
+ //JWT SEED DE AUTENTICACION
+
+ process.env.SEED = process.env.SEED || 'SEED_INT'
