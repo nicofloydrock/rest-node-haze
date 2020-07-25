@@ -22,7 +22,7 @@ if( process.env.NODE_ENV === 'dev'){
     urlDB = 'mongodb://localhost:27017/cafe';
 }else{
     //base de datos prod
-    urlDB = `mongodb://${process.env.HEROKU_MONGO_USER}:${process.env.HEROKU_MONGO_PASS}@ds151124.mlab.com:51124/example`;
+    urlDB = process.env.MONGO_URI;
 
 }
 
