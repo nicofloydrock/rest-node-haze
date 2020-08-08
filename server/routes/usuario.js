@@ -3,14 +3,14 @@ const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const app = express()
 const Usuario = require('../models/usuario')
-const {verificaToken} = require('../middlewares/autenticacion')
+const {verificaToken , verificarAdminRole} = require('../middlewares/autenticacion')
 
 app.get('/', function(req, res) {
     res.json('Hello World')
 });
 
 //obtengo 
-app.get('/usuario', verificaToken , (req, res) => {
+app.get('/usuario', verificaToken, (req, res) => {
    
     let desde = req.query.desde || 0;
     desde = Number(desde)
@@ -40,7 +40,7 @@ app.get('/usuario', verificaToken , (req, res) => {
 });
 
 //inserto
-app.post('/usuario', verificaToken , (req, res)=> {
+app.post('/usuario', [verificaToken ,verificarAdminRole], (req, res)=> {
     let data = req.body;
 
     let usuario = new Usuario({
@@ -78,7 +78,7 @@ app.post('/usuario', verificaToken , (req, res)=> {
 });
 
 //actualizo
-app.put('/usuario/:id',verificaToken , (req, res) =>{
+app.put('/usuario/:id',[verificaToken ,verificarAdminRole] , (req, res) =>{
     let id = req.params.id;
     let body = _.pick(req.body , ['nombre' , 'email' , 'img' , 'role' , 'estado']) ;
     let option = {
@@ -86,30 +86,20 @@ app.put('/usuario/:id',verificaToken , (req, res) =>{
         runValidators:true
     }
 
-
     Usuario.findByIdAndUpdate(id,body ,option, (err,usuarioDB) =>{
         if(err){
             res.status(400).json({
                 ok:false,
                 mensaje:'error' ,
                 error:err
-
             });
         }
-
         res.json({
                 id,
                 ok:true,
                 usuario:usuarioDB
-            });
-        
+            }); 
     });
-
-
-
-
-
- 
 });
 
 
@@ -122,7 +112,7 @@ app.get('/persona', verificaToken , (req, res)=>{
 
 
 //delete
-app.delete('/usuario/:id', verificaToken ,(req, res) => {
+app.delete('/usuario/:id', [verificaToken ,verificarAdminRole] ,(req, res) => {
 
     let id = req.params.id;
     let cambiaEstado ={
@@ -156,7 +146,7 @@ app.delete('/usuario/:id', verificaToken ,(req, res) => {
         })
     }) */
 
-    //eliminacion por estado
+    //eliminacion por estado ( actualizacion...)
     Usuario.findByIdAndUpdate(id,cambiaEstado ,option, (err,usuarioDB) =>{
         if(err){
             res.status(400).json({
