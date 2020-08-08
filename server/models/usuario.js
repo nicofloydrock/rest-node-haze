@@ -45,7 +45,7 @@ let usuarioSchema = new Schema({
 });
 
 
-//
+//Configuramos que cada vez que se convierta a toJson el Usuario , elimine la propiedad "Password"
 usuarioSchema.methods.toJSON = function() {
     let user = this;
     let userObject= user.toObject();
