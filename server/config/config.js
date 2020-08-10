@@ -56,3 +56,9 @@ process.env.URL_DB = urlDB;
  */
 
  process.env.SEED = process.env.SEED || 'SEED_INT'
+
+
+
+ //GOOGLE CLIENT ID
+
+ process.env.CLIENT_ID = process.env.CLIENT_ID || '220758993800-njoj16g396knov5o5k1gtnpji2h3fcbo.apps.googleusercontent.com'
