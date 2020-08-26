@@ -21,6 +21,9 @@ app.get('/categoria', verificaToken, (req, res) => {
     Categoria.find({})
         .skip(desde)
         .limit(limite)
+        .sort('descripcion') //Ordena mediante un parametro de entrada en este caso descripcion. Ordena A-Z luego a-z
+        .populate('usuario' , 'nombre email')//la variable usuario contiene un objectID ,
+                                             // con esto resolvemos que usuario le corresponde , ademas , se indica que se quiere obtener de ese objeto
         .exec((err, categoriasDB) => {
             if (err) {
                 res.status(500).json({
