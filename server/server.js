@@ -13,8 +13,8 @@ app.use(bodyParser.json())
 
 //habilitar carpeta publica
 
-app.use(express.static(path.resolve(__dirname , '../public')));
-console.log(path.resolve(__dirname , '../public'));
+app.use(express.static(path.resolve(__dirname , '../public/dist/spotiapp')));
+console.log(path.resolve(__dirname , '../public/dist/spotiapp'));
 
 //Configuracion de rutas globales 
 app.use(require('./routes/index'))
@@ -23,6 +23,10 @@ mongoose.connect(process.env.URL_DB, {useNewUrlParser:true , useCreateIndex:true
     if(err) throw err;
     console.log('Conexion Exitosa');
 });
+
+app.get('/app' , function(req, res) {
+    res.sendFile(path.join(__dirname +'../public/dist/spotiapp/home.html' ));
+})
 
 
 app.listen(process.env.PORT, () => {
