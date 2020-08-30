@@ -15,8 +15,10 @@ const path = require('path')
 app.use(express.urlencoded({limit:'50mb'}));
 
 app.use(express.json({limit:'50mb'}));
-app.use(express.static(path.resolve(__dirname , '../public')));
-console.log(path.resolve(__dirname , '../public'));
+app.use(express.static(path.resolve(__dirname , '../public/dist/spotiapp'))); 
+app.use(express.static(path.resolve(__dirname , '../public'))); 
+
+console.log(path.resolve(__dirname , '../public/dist/spotiapp')); 
 
 //Configuracion de rutas globales 
 app.use(require('./routes/index'))
