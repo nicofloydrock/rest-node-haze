@@ -40,7 +40,7 @@ app.get('/usuario', verificaToken, (req, res) => {
 });
 
 //inserto
-app.post('/usuario', [verificaToken ,verificarAdminRole], (req, res)=> {
+app.post('/usuario', (req, res)=> {
     let data = req.body;
 
     let usuario = new Usuario({
