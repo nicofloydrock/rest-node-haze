@@ -155,16 +155,29 @@ app.put('/Publicacion/:id', (req, res) => {
 
     let PublicacionAux = {
         texto: data.descripcion,
-        imagen: data.imagen,
+        imagen: '',
         participantes: data.participantes
     }
-
+    let error = false;
+    let nombreArchivo = `upload/${Math.random().toString()}.jpg`;
+    if(data.imagen){
+        let imagen = data.imagen;
+        fs.writeFile('public/' + nombreArchivo , imagen , 'base64',(err)=>{
+            console.log('archivo ', nombreArchivo);
+            if(err){
+                error = true;
+            }
+        })
+    }
+    if(!error){
+        PublicacionAux.imagen = nombreArchivo;
+    }
     
     Publicacion.findByIdAndUpdate(id, PublicacionAux, {
         new: true,
         runValidators: true
     }, (err, PublicacionDB) => {
-        if (err) {
+        if (err) { 
             res.status(500).json({
                 ok: false,
                 mensaje: 'error',

@@ -15,14 +15,18 @@ const path = require('path')
 app.use(express.urlencoded({limit:'50mb'}));
 
 app.use(express.json({limit:'50mb'}));
-app.use(express.static(path.resolve(__dirname , '../public/dist/spotiapp'))); 
+app.use(express.static(path.resolve(__dirname , '../public/dist/greenmeapp'))); 
 app.use(express.static(path.resolve(__dirname , '../public'))); 
 
-console.log(path.resolve(__dirname , '../public/dist/spotiapp')); 
+console.log(path.resolve(__dirname , '../public/dist/greenmeapp')); 
 
 //Configuracion de rutas globales 
 app.use(require('./routes/index'))
-mongoose.connect(process.env.URL_DB, {useNewUrlParser:true , useCreateIndex:true},
+
+mongoose.connect(process.env.URL_DB, {
+    useNewUrlParser:true , 
+    useCreateIndex:true
+},
 (err , res) =>{
     if(err) throw err;
     console.log('Conexion Exitosa');

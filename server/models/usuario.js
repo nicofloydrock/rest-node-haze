@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator')
 let Schema = mongoose.Schema;
 
-
-
-
 let rolesValidos = {
     values:['ADMIN_ROLE' , 'USER_ROLE'],
     message:'{VALUE} no es valido'
@@ -13,6 +10,7 @@ let rolesValidos = {
 let usuarioSchema = new Schema({
     nombre:{
         type: String,
+        match: /[a-z]/ ,
         required: [true , 'El nombre es requerido']
     },
     email:{
@@ -44,8 +42,9 @@ let usuarioSchema = new Schema({
     }
 });
 
-
-//Configuramos que cada vez que se convierta a toJson el Usuario , elimine la propiedad "Password"
+/* Configuramos que cada vez que se 
+convierta a toJson el Usuario ,
+elimine la propiedad "Password" */
 usuarioSchema.methods.toJSON = function() {
     let user = this;
     let userObject= user.toObject();

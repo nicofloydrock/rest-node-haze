@@ -23,16 +23,14 @@ process.env.PORT = process.env.PORT || 3000;
 let urlDB;
 if( process.env.NODE_ENV === 'dev'){
     /* Base de datos local */
-    urlDB = 'mongodb://localhost:27017/cafe';
+    urlDB = 'mongodb://localhost:27017/GreenME';
 }else{
-    /* Base de datos prod
+    /* Base de datos produccion
      * MONGO_URI se definen como variable de entorno en HEROKU.     
      * 
      */
     urlDB = process.env.MONGO_URI;
-
 }
-
 process.env.URL_DB = urlDB;
 
 
