@@ -15,10 +15,10 @@ const path = require('path')
 app.use(express.urlencoded({limit:'50mb'}));
 
 app.use(express.json({limit:'50mb'}));
-app.use(express.static(path.resolve(__dirname , '../public/dist/greenmeapp'))); 
+app.use(express.static(path.resolve(__dirname , '../public/dist/historial-pelu'))); 
 app.use(express.static(path.resolve(__dirname , '../public'))); 
 
-console.log(path.resolve(__dirname , '../public/dist/greenmeapp')); 
+console.log(path.resolve(__dirname , '../public/dist/historial-pelu')); 
 
 //Configuracion de rutas globales 
 app.use(require('./routes/index'))
